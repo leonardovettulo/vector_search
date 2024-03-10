@@ -97,10 +97,16 @@ After activating the environment, install the necessary dependencies by running:
 pip install -r requirements.txt
 ```
 
+Important! Run this to allow absolute imports
+
 ```bash
 export PYTHONPATH=.
 ```
+### Running tests
 
+```bash
+pytest tests/
+```
 ## Usage
 
 1. Place some html files in the data folder (for example page.html, page1.html, etc). Another option is to use the download_html.py script

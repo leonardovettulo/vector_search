@@ -11,6 +11,8 @@ services:
       QDRANT_HOST: qdrant
       QDRANT_PORT: 6333
       WORKERS: 1
+    volumes:
+      - ./data_chunks:/app/data_chunks
     depends_on:
       - qdrant
 
@@ -25,3 +27,4 @@ services:
 
 volumes:
   qdrant_data:
+  data_chunks:

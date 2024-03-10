@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from search.constants import DATA_FOLDER, VECTOR_NUMBER_OF_TOP_RESULTS
+from search.constants import CHUNKS_JSON_PATH, DATA_FOLDER, VECTOR_NUMBER_OF_TOP_RESULTS
 from search.models import SearchRequest, SearchResponse, SearchResultItem
 from search.search_text.vector_search import VectorSearch
 from search.vectorizer.parse_html import parse_html_files_to_chunks
@@ -40,7 +40,9 @@ def vectorize_data():
 
 @app.get("/create_chunks")
 def create_chunks():
-    number_of_chunks = parse_html_files_to_chunks(folder_path=DATA_FOLDER)
+    number_of_chunks = parse_html_files_to_chunks(
+        folder_path=DATA_FOLDER, output_json_path=CHUNKS_JSON_PATH
+    )
 
     return {"Number of chunks": number_of_chunks}
 

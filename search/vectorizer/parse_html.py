@@ -3,8 +3,6 @@ import os
 
 from bs4 import BeautifulSoup
 
-from search.constants import CHUNKS_JSON_PATH
-
 
 def get_html_files(folder_path: str) -> list[str]:
     """
@@ -101,14 +99,14 @@ def parse_html_to_chunks(filename: str, folder: str) -> list[dict[str, str]]:
     return chunks
 
 
-def parse_html_files_to_chunks(folder_path: str) -> int:
+def parse_html_files_to_chunks(folder_path: str, output_json_path: str) -> int:
     """Get all the html files from a folder and generate a json file with chunks"""
 
     chunks = []
     for file_str in get_html_files(folder_path=folder_path):
         chunks.extend(parse_html_to_chunks(filename=file_str, folder=folder_path))
 
-    with open(CHUNKS_JSON_PATH, "w", encoding="utf-8") as file:
+    with open(output_json_path, "w", encoding="utf-8") as file:
         json.dump(chunks, file, indent=4)
 
     return len(chunks)
