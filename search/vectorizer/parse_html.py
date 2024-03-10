@@ -1,8 +1,9 @@
 import json
 import os
-from typing import Any
 
 from bs4 import BeautifulSoup
+
+from search.constants import CHUNKS_JSON_PATH, DATA_FOLDER
 
 
 def get_html_files(folder_path: str) -> list[str]:
@@ -17,7 +18,7 @@ def get_html_files(folder_path: str) -> list[str]:
     """
     html_files: list[str] = []
 
-    for root, _, files in os.walk(folder_path):
+    for _, _, files in os.walk(folder_path):
         for file in files:
             if file.endswith(".html"):
                 html_files.append(file)
@@ -100,15 +101,17 @@ def parse_html_to_chunks(filename: str, folder: str) -> list[dict[str, str]]:
     return chunks
 
 
-if __name__ == "__main__":
-
-    # TODO: convert this to a new function
-    PATH = "./data"
+def parse_html_files_to_chunks(folder_path: str):
+    """Get all the html files from a folder and generate a json file with chunks"""
 
     chunks = []
-    for file_str in get_html_files(folder_path=PATH):
-        chunks.extend(parse_html_to_chunks(filename=file_str, folder=PATH))
+    for file_str in get_html_files(folder_path=folder_path):
+        chunks.extend(parse_html_to_chunks(filename=file_str, folder=folder_path))
 
-    print(len(chunks))
-    with open("./data_chunks/chunks.json", "w", encoding="utf-8") as file:
+    with open(CHUNKS_JSON_PATH, "w", encoding="utf-8") as file:
         json.dump(chunks, file, indent=4)
+
+
+if __name__ == "__main__":
+
+    parse_html_files_to_chunks(folder_path=DATA_FOLDER)
