@@ -2,16 +2,16 @@
 # Text Search Engine with Vector Database
 
 ### Introduction
-In this project, we aim to create a sophisticated text search engine that leverages advanced vectorization techniques for efficient and accurate information retrieval. The core objective is to transform a collection of text documents into a searchable format by indexing it in a vector database (DB). This will enable high-speed and relevant search results for user queries by comparing the semantic similarity of the query against the indexed documents.
+In this project, we aim to create a text search engine that leverages vectorization techniques for efficient and accurate information retrieval. The core objective is to transform a collection of text documents into a searchable format by indexing it in a vector database. This will enable relevant search results for user queries by comparing the semantic similarity of the query against the indexed documents.
 
 ### Project Overview
 The project involves several key steps:
 
-- Data Preparation: We'll start with a dataset comprising 5-10 articles, which will be read from a file. This approach simplifies data handling and ensures that the system is scalable and can be tested with a controlled dataset.
+- Data Preparation: We are able to download wikipedia html files from a URL.
 
-- Text Chunking and Vectorization: The articles will be divided into manageable chunks. Each chunk will then be transformed into vector representations using open-source text embedding models. This process is crucial for capturing the semantic meaning of the text.
+- Text Chunking and Vectorization: The files are split into chunks (paragraphs) keeping metadata (article title, subtitle). Then we use "all-MiniLM-L6-v2" transformer model for vectorizing. This is done using fastembed for speed.
 
-- Database Indexing: The generated vectors (embeddings) will be stored in an open-source graph database that supports vector search. This allows us to leverage the power of similarity search in high-dimensional space for retrieving the most relevant text chunks in response to a query.
+- Database Indexing: The generated vectors (embeddings) are stored in a vector database (QDRANT).
 
 - Query Processing: Users will input text queries, which are also vectorized using the same embedding model. The search engine will then find the top K most similar text chunks from the vector DB, effectively returning the most relevant results to the user.
 
@@ -113,3 +113,9 @@ pytest tests/
 2. Run the parse_html.py script to conver the html files to json chunks
 3. Go to `http://localhost:8000/docs` to access the FastAPI console, use the `vectorize_data` endpoint to create the embeddings and save them into qdrant.
 4. Use the `search` endpoint to search for text, you can optionally pick the number of results.
+
+## Next Steps
+
+- Separate dependencies (development, docker) in order to give the docker image only the needed libraries
+- Add more unit tests
+- Update env variables in docker_compose.yaml
