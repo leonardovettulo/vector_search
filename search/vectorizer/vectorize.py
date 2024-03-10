@@ -11,14 +11,11 @@ from search.constants import (
 )
 
 
-def create_embeddings_and_save():
+def create_embeddings_and_save() -> int:
     """
     Creates embeddings for the text chunks and saves the vectos into a new collection.
     We are using fastembed in the background to speed up the process.
     """
-
-    payload = []
-    documents = []
 
     try:
         with open(CHUNKS_JSON_PATH, "r") as file:
@@ -28,8 +25,8 @@ def create_embeddings_and_save():
     except json.JSONDecodeError:
         print("Error decoding JSON.")
 
-    documents = []  # For storing all the content that will be vectorized
-    payload = []  # For storing the rest of the attributes that will be used as payload
+    documents: list[str] = []  # For storing all the content that will be vectorized
+    payload: list[dict] = []  # For storing the attributes that will be used as payload
 
     for chunk in data:
         if "content" in chunk:
@@ -62,7 +59,4 @@ def create_embeddings_and_save():
         parallel=0,
     )
 
-
-if __name__ == "__main__":
-
-    create_embeddings_and_save()
+    return len(documents)
