@@ -14,7 +14,7 @@ def search_text(text: str):
 
 if __name__ == "__main__":
 
-    # vectorize.create_embeddings_and_save()
+    vectorize.create_embeddings_and_save()
 
     SEARCH_QUERY = "bishop and knight checkmate"
 

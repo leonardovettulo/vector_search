@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from search.constants import VECTOR_NUMBER_OF_TOP_RESULTS
 from search.models import SearchRequest, SearchResponse, SearchResultItem
 from search.search_text.vector_search import VectorSearch
+from search.vectorizer import vectorize
 
 app = FastAPI()
 
@@ -25,6 +26,13 @@ def search_endpoint(request: SearchRequest):
     ]
 
     return SearchResponse(results=formatted_results)
+
+
+@app.get("/vectorize_data")
+def vectorize_data():
+    vectorize.create_embeddings_and_save()
+
+    return {"status": "Done"}
 
 
 if __name__ == "__main__":

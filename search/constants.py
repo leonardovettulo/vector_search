@@ -1,4 +1,4 @@
-QDRANT_URL = "http://localhost:6333/"
+QDRANT_URL = "http://qdrant_container:6333/"
 EMBEDDINGS_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 CHUNKS_JSON_PATH = "./data_chunks/chunks.json"
 VECTOR_COLLECTION = "wikipedia"
