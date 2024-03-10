@@ -18,7 +18,7 @@ class VectorSearch:
         self.qdrant_client: QdrantClient = QdrantClient(QDRANT_URL)
         self.qdrant_client.set_model(EMBEDDINGS_MODEL)
 
-    def search(self, text: str, top_k: int) -> list[tuple[Any, float]]:
+    def search(self, text: str, top_k: int = 5) -> list[tuple[Any, float]]:
         """
         Performs a search query in the specified collection using the given text.
 

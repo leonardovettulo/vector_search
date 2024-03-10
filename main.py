@@ -11,9 +11,10 @@ app = FastAPI()
 @app.post("/search", response_model=SearchResponse)
 def search_endpoint(request: SearchRequest):
     vector_search = VectorSearch(collection="wikipedia")
-    raw_results = vector_search.search(
-        text=request.query, top_k=VECTOR_NUMBER_OF_TOP_RESULTS
-    )
+
+    top_k = request.top_results or VECTOR_NUMBER_OF_TOP_RESULTS
+
+    raw_results = vector_search.search(text=request.query, top_k=top_k)
 
     formatted_results = [
         SearchResultItem(
