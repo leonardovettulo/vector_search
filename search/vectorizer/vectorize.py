@@ -3,10 +3,12 @@ import json
 from qdrant_client import QdrantClient, models
 from tqdm import tqdm
 
-QDRANT_URL = "http://localhost:6333/"
-EMBEDDINGS_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-CHUNKS_JSON_PATH = "./data_chunks/chunks.json"
-VECTOR_COLLECTION = "wikipedia"
+from search.constants import (
+    CHUNKS_JSON_PATH,
+    EMBEDDINGS_MODEL,
+    QDRANT_URL,
+    VECTOR_COLLECTION,
+)
 
 
 def create_embeddings_and_save():
