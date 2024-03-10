@@ -1,3 +1,4 @@
+import json
 import os
 from typing import Any
 
@@ -101,10 +102,13 @@ def parse_html_to_chunks(filename: str, folder: str) -> list[dict[str, str]]:
 
 if __name__ == "__main__":
 
+    # TODO: convert this to a new function
     PATH = "./data"
 
     chunks = []
-    for file in get_html_files(folder_path=PATH):
-        chunks.extend(parse_html_to_chunks(filename=file, folder=PATH))
+    for file_str in get_html_files(folder_path=PATH):
+        chunks.extend(parse_html_to_chunks(filename=file_str, folder=PATH))
 
-    print(chunks)
+    print(len(chunks))
+    with open("./data_chunks/chunks.json", "w", encoding="utf-8") as file:
+        json.dump(chunks, file, indent=4)
