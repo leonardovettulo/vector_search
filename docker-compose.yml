@@ -25,6 +25,19 @@ services:
     volumes:
       - ./data/qdrant_storage:/qdrant/storage
 
+  elasticsearch:
+    container_name: elasticsearch_container
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elastic_password
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+    - "9200:9200"
+
 volumes:
   qdrant_data:
   data_chunks:
+  esdata1:

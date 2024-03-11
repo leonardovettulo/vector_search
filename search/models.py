@@ -7,6 +7,7 @@ class SearchRequest(BaseModel):
 
 
 class SearchResultItem(BaseModel):
+    doc_id: str
     title: str
     subtitle: str
     content: str
