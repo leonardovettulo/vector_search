@@ -54,6 +54,7 @@ def combine_results(
     elastic_results_normalized = z_score_normalize_scores(elastic_results)
 
     # Combine and rerank
+    # Since we keep doc_id if there are duplicate results we only keep one
     combined_results: dict = {}
     weights = {"qdrant": 0.8, "elastic": 0.2}
 

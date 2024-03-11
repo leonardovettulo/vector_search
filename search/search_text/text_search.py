@@ -31,11 +31,7 @@ class ElasticTextSearch:
         """
         query = {
             "size": top_k,
-            "query": {
-                "match": {
-                    "content": text  # Assuming 'content' is the field you want to search within. Adjust as necessary.
-                }
-            },
+            "query": {"match": {"content": text}},
         }
 
         try:
