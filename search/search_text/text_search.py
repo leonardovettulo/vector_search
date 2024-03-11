@@ -3,6 +3,7 @@ from typing import Any
 from elasticsearch import Elasticsearch
 
 from search.constants import ELASTIC_PWD, ELASTIC_URL, ELASTIC_USR
+from search.models import SearchResultItem
 
 
 class ElasticTextSearch:
@@ -47,3 +48,17 @@ class ElasticTextSearch:
             return []
 
         return [(hit["_source"], hit["_score"]) for hit in hits]
+
+    @staticmethod
+    def format_result(raw_results: list[tuple]) -> list[SearchResultItem]:
+
+        return [
+            SearchResultItem(
+                doc_id=result[0]["doc_id"],
+                title=result[0]["title"],
+                subtitle=result[0]["subtitle"],
+                content=result[0]["content"],
+                score=result[1],
+            )
+            for result in raw_results
+        ]

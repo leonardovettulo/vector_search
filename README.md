@@ -119,3 +119,4 @@ pytest tests/
 - Separate dependencies (development, docker) in order to give the docker image only the needed libraries
 - Add more unit tests
 - Update env variables in docker_compose.yaml
+- Add logging

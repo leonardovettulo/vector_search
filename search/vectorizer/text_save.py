@@ -2,7 +2,13 @@ import json
 
 from elasticsearch import Elasticsearch
 
-from search.constants import CHUNKS_JSON_PATH, ELASTIC_PWD, ELASTIC_URL, ELASTIC_USR
+from search.constants import (
+    CHUNKS_JSON_PATH,
+    ELASTIC_INDEX,
+    ELASTIC_PWD,
+    ELASTIC_URL,
+    ELASTIC_USR,
+)
 
 
 def save_text_to_elasticsearch():
@@ -19,12 +25,9 @@ def save_text_to_elasticsearch():
     except json.JSONDecodeError:
         print("Error decoding JSON.")
 
-    # Index name
-    index_name = "articles"
-
     # Index each document in Elasticsearch
     for doc in documents:
-        res = es.index(index=index_name, document=doc)
+        res = es.index(index=ELASTIC_INDEX, document=doc)
         print("Indexed Document ID:", res["_id"])
 
     return len(documents)
