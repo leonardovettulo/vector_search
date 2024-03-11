@@ -56,6 +56,7 @@ def search_hybrid(request: SearchRequest):
     return SearchResponse(results=formatted_results)
 
 
+# This endpoint is to facilitate running the script, for dev only
 @app.get("/vectorize_data")
 def vectorize_data():
 
@@ -64,6 +65,7 @@ def vectorize_data():
     return {"Number of documents": number_of_documents}
 
 
+# This endpoint is to facilitate running the script, for dev only
 @app.get("/create_chunks")
 def create_chunks():
     number_of_chunks = parse_html_files_to_chunks(
@@ -73,6 +75,7 @@ def create_chunks():
     return {"Number of chunks": number_of_chunks}
 
 
+# This endpoint is to facilitate running the script, for dev only
 @app.get("/save_text_to_elastic")
 def save_text_to_elastic():
     number_of_documents = save_text_to_elasticsearch()

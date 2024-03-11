@@ -5,6 +5,8 @@
 In this project, we aim to create a text search engine that leverages vectorization techniques for efficient and accurate information retrieval. The core objective is to transform a collection of text documents into a searchable format by indexing it in a vector database. This will enable relevant search results for user queries by comparing the semantic similarity of the query against the indexed documents. Also hybrid search is supported.
 
 ### Project Overview
+
+
 The project involves several key steps:
 
 - Data Preparation: We are able to download wikipedia html files from a URL.
@@ -15,8 +17,16 @@ The project involves several key steps:
 
 - Query Processing: Users will input text queries, which are also vectorized using the same embedding model. The search engine will then find the top K most similar text chunks from the vector DB, effectively returning the most relevant results to the user.
 
-- New! Also hybrid search is supported using Qdrant and ElasticSearch
+**Vector Path**
+HTML files from Wikipedia --> chunks.json --> Create Embeddings --> Save in Qdrant
 
+**Text Path**
+HTML files from Wikipedia --> chunks.json --> Save in Elastic
+
+- New! Also hybrid search is supported using Qdrant and ElasticSearch
+  1. Get results from vector search
+  2. Get results from text search
+  3. Combine the results
 
 ## Table of Contents
 
@@ -113,11 +123,11 @@ pytest tests/
 1. Place some html files in the data folder (for example page.html, page1.html, etc). Another option is to use the download_html.py script
 2. Use the `create_chunks` endpoint to create the `chunks.json` file from the html files.
 3. Go to `http://localhost:8000/docs` to access the FastAPI OpenAPI docs
-4. Use the `vectorize_data` endpoint to create the embeddings and save them into qdrant.
+4. Use the `vectorize_data` endpoint to create the embeddings and save them into Qdrant.
 5. Use the `search_vector` endpoint to search for text using vector DB, you can optionally pick the number of results.
 
 Optional
-1. Use the `save_text_to_elastic` endpoint to create the embeddings and save them into qdrant.
+1. Use the `save_text_to_elastic` endpoint to create the embeddings and save them into ElasticSearch.
 2. Use the `search_text` endpoint to search for text using ElasticSearch, you can optionally pick the number of results.
 3. Use the `search_hybrid` endpoint to search for text using Qdrant and ElasticSearch and combining results.
 
@@ -127,4 +137,4 @@ Optional
 - Add more unit tests
 - Update env variables in docker_compose.yaml
 - Add logging
-- Adjust paths for files
+- Adjust paths for files, using pathlib
