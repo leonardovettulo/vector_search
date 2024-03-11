@@ -2,7 +2,7 @@
 # Text Search Engine with Vector Database
 
 ### Introduction
-In this project, we aim to create a text search engine that leverages vectorization techniques for efficient and accurate information retrieval. The core objective is to transform a collection of text documents into a searchable format by indexing it in a vector database. This will enable relevant search results for user queries by comparing the semantic similarity of the query against the indexed documents. Also hybrid search is supported.
+In this project, we aim to create a text search engine that leverages vectorization techniques for efficient and accurate information retrieval. The core objective is to transform a collection of html text articles from Wikipedia into a searchable format by indexing it in a vector database. This will enable relevant search results for user queries by comparing the semantic similarity of the query against the indexed documents. Also hybrid search is supported.
 
 ### Project Overview
 
@@ -120,7 +120,7 @@ pytest tests/
 ```
 ## Usage
 
-1. Place some html files in the data folder (for example page.html, page1.html, etc). Another option is to use the download_html.py script
+1. Place some wikipedia html files in the data folder (for example page.html, page1.html, etc). Another option is to use the download_html.py script
 2. Use the `create_chunks` endpoint to create the `chunks.json` file from the html files.
 3. Go to `http://localhost:8000/docs` to access the FastAPI OpenAPI docs
 4. Use the `vectorize_data` endpoint to create the embeddings and save them into Qdrant.
