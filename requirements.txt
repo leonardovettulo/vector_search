@@ -9,6 +9,8 @@ click==8.1.7
 coloredlogs==15.0.1
 dill==0.3.8
 distlib==0.3.8
+elastic-transport==8.12.0
+elasticsearch==8.12.1
 fastapi==0.110.0
 fastembed==0.2.2
 filelock==3.13.1
@@ -26,6 +28,7 @@ humanfriendly==10.0
 hyperframe==6.0.1
 identify==2.5.35
 idna==3.6
+iniconfig==2.0.0
 isort==5.13.2
 loguru==0.7.2
 lxml==5.1.0
@@ -39,12 +42,14 @@ onnx==1.15.0
 onnxruntime==1.17.1
 packaging==24.0
 platformdirs==4.2.0
+pluggy==1.4.0
 portalocker==2.8.2
 pre-commit==3.6.2
 protobuf==4.25.3
 pydantic==2.6.3
 pydantic_core==2.16.3
 pylint==3.1.0
+pytest==8.1.1
 PyYAML==6.0.1
 qdrant-client==1.8.0
 requests==2.31.0

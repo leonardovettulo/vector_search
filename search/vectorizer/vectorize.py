@@ -6,8 +6,8 @@ from tqdm import tqdm
 from search.constants import (
     CHUNKS_JSON_PATH,
     EMBEDDINGS_MODEL,
+    QDRANT_COLLECTION,
     QDRANT_URL,
-    VECTOR_COLLECTION,
 )
 
 
@@ -41,7 +41,7 @@ def create_embeddings_and_save() -> int:
     client.set_model(EMBEDDINGS_MODEL)
 
     client.recreate_collection(
-        collection_name=VECTOR_COLLECTION,
+        collection_name=QDRANT_COLLECTION,
         vectors_config=client.get_fastembed_vector_params(on_disk=True),
         # We use quantization to reduce the memory usage
         quantization_config=models.ScalarQuantization(
@@ -52,7 +52,7 @@ def create_embeddings_and_save() -> int:
     )
 
     client.add(
-        collection_name=VECTOR_COLLECTION,
+        collection_name=QDRANT_COLLECTION,
         documents=documents,
         metadata=payload,
         ids=tqdm(range(len(payload))),

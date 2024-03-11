@@ -1,11 +1,11 @@
-from search.constants import VECTOR_NUMBER_OF_TOP_RESULTS
+from search.constants import QDRANT_COLLECTION, VECTOR_NUMBER_OF_TOP_RESULTS
 from search.search_text.vector_search import VectorSearch
 from search.vectorizer import vectorize
 
 
 def search_text(text: str):
 
-    vector_search = VectorSearch(collection="wikipedia")
+    vector_search = VectorSearch(collection=QDRANT_COLLECTION)
     results = vector_search.search(text=text, top_k=VECTOR_NUMBER_OF_TOP_RESULTS)
 
     for result in results:

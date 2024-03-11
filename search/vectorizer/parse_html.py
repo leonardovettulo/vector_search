@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 
 from bs4 import BeautifulSoup
 
@@ -83,6 +84,7 @@ def parse_html_to_chunks(filename: str, folder: str) -> list[dict[str, str]]:
                 if content_text and len(content_text) > 50:
                     chunks.append(
                         {
+                            "doc_id": str(uuid.uuid4()),
                             "title": title,
                             "subtitle": (
                                 current_subtitle

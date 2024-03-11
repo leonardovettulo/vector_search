@@ -3,6 +3,7 @@ from typing import Any
 from qdrant_client import QdrantClient
 
 from search.constants import EMBEDDINGS_MODEL, QDRANT_URL
+from search.models import SearchResultItem
 
 
 class VectorSearch:
@@ -39,3 +40,17 @@ class VectorSearch:
 
         metadata = [(hit.metadata, hit.score) for hit in search_result]
         return metadata
+
+    @staticmethod
+    def format_result(raw_results: list[tuple]) -> list[SearchResultItem]:
+
+        return [
+            SearchResultItem(
+                doc_id=result[0]["doc_id"],
+                title=result[0]["title"],
+                subtitle=result[0]["subtitle"],
+                content=result[0]["document"],
+                score=result[1],
+            )
+            for result in raw_results
+        ]
